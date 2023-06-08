@@ -8,14 +8,14 @@ part of 'category.dart';
 
 _$_Categories _$$_CategoriesFromJson(Map<String, dynamic> json) =>
     _$_Categories(
-      categories: (json['сategoriess s'] as List<dynamic>)
+      categories: (json['сategories'] as List<dynamic>)
           .map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$$_CategoriesToJson(_$_Categories instance) =>
     <String, dynamic>{
-      'сategoriess s': instance.categories,
+      'сategories': instance.categories,
     };
 
 _$_Category _$$_CategoryFromJson(Map<String, dynamic> json) => _$_Category(

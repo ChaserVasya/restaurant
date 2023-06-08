@@ -20,7 +20,7 @@ Categories _$CategoriesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Categories {
-  @JsonKey(name: 'сategoriess s')
+  @JsonKey(name: 'сategories')
   List<Category> get categories => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $CategoriesCopyWith<$Res> {
           Categories value, $Res Function(Categories) then) =
       _$CategoriesCopyWithImpl<$Res, Categories>;
   @useResult
-  $Res call({@JsonKey(name: 'сategoriess s') List<Category> categories});
+  $Res call({@JsonKey(name: 'сategories') List<Category> categories});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ abstract class _$$_CategoriesCopyWith<$Res>
       __$$_CategoriesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'сategoriess s') List<Category> categories});
+  $Res call({@JsonKey(name: 'сategories') List<Category> categories});
 }
 
 /// @nodoc
@@ -99,8 +99,7 @@ class __$$_CategoriesCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Categories implements _Categories {
   const _$_Categories(
-      {@JsonKey(name: 'сategoriess s')
-          required final List<Category> categories})
+      {@JsonKey(name: 'сategories') required final List<Category> categories})
       : _categories = categories;
 
   factory _$_Categories.fromJson(Map<String, dynamic> json) =>
@@ -108,7 +107,7 @@ class _$_Categories implements _Categories {
 
   final List<Category> _categories;
   @override
-  @JsonKey(name: 'сategoriess s')
+  @JsonKey(name: 'сategories')
   List<Category> get categories {
     if (_categories is EqualUnmodifiableListView) return _categories;
     // ignore: implicit_dynamic_type
@@ -150,14 +149,14 @@ class _$_Categories implements _Categories {
 
 abstract class _Categories implements Categories {
   const factory _Categories(
-      {@JsonKey(name: 'сategoriess s')
+      {@JsonKey(name: 'сategories')
           required final List<Category> categories}) = _$_Categories;
 
   factory _Categories.fromJson(Map<String, dynamic> json) =
       _$_Categories.fromJson;
 
   @override
-  @JsonKey(name: 'сategoriess s')
+  @JsonKey(name: 'сategories')
   List<Category> get categories;
   @override
   @JsonKey(ignore: true)

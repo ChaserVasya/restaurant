@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:restaurant/application/data/models/category/category.dart';
+import 'package:restaurant/data/models/category/category.dart';
 
 @singleton
 class CategoriesMapper {

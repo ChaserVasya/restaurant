@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/application/di/di.dart';
 import 'package:restaurant/presentation/blocs/categories_cubit/categories_cubit.dart';
 import 'package:restaurant/presentation/screens/main/widgets/category_card.dart';
+import 'package:restaurant/presentation/screens/main/widgets/user_info_app_bar.dart';
 import 'package:restaurant/presentation/screens/widgets/app_scaffold.dart';
 import 'package:restaurant/uikit/consts_ui.dart';
+import 'package:restaurant/utils/extensions/list.dart';
 
 @RoutePage()
 class MainScreen extends StatelessWidget {
@@ -16,37 +18,48 @@ class MainScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt.get<CategoriesCubit>(),
       child: AppScaffold(
-        appBar: AppBar(
-          //TODO починить
-          leading: const Icon(Icons.location_on_outlined),
-          title: const Text('hello'),
-          actions: const [CircleAvatar()],
-        ),
+        appBar: const UserInfoAppBar(),
         body: Padding(
-          padding: const EdgeInsets.all(ConstsUI.screenBodyPaddings),
+          padding: const EdgeInsets.symmetric(
+            horizontal: ConstsUI.screenBodyPaddings,
+          ),
           child: BlocBuilder<CategoriesCubit, CategoriesState>(
-            builder: (context, state) => state.when(initial: () {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }, main: (categories) {
-              return ListView.builder(
-                itemCount: categories.length,
-                itemBuilder: (context, i) => CategoryCard(categories[i]),
-              );
-            }, error: (e) {
-              return Center(
-                child: Column(
-                  children: [
-                    const Text('Произошла непредвиденная ошибка :('),
-                    const SizedBox(height: 8),
-                    Text(e),
-                  ],
-                ),
-              );
-            }),
+            builder: (context, state) => state.when(
+              initial: _handleInitial,
+              main: _handleMain,
+              error: _handleError,
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _handleInitial() {
+    return const Center(
+      child: CircularProgressIndicator.adaptive(),
+    );
+  }
+
+  Widget _handleMain(categories) {
+    final separatedWidgets = <Widget>[
+      for (final category in categories) CategoryCard(category),
+    ].separateAndWrapBy(const SizedBox(height: 8));
+
+    return ListView.builder(
+      itemCount: separatedWidgets.length,
+      itemBuilder: (context, i) => separatedWidgets[i],
+    );
+  }
+
+  Widget _handleError(e) {
+    return Center(
+      child: Column(
+        children: [
+          const Text('Произошла непредвиденная ошибка :('),
+          const SizedBox(height: 8),
+          Text(e),
+        ],
       ),
     );
   }

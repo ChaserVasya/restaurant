@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:restaurant/application/data/data_sources/categories_data_source/categories_data_source.dart';
-import 'package:restaurant/application/data/mappers/categories_mapper.dart';
-import 'package:restaurant/application/data/models/category/category.dart';
+import 'package:restaurant/application/global.dart';
+import 'package:restaurant/data/data_sources/categories_data_source/categories_data_source.dart';
+import 'package:restaurant/data/mappers/categories_mapper.dart';
+import 'package:restaurant/data/models/category/category.dart';
 
 part 'categories_cubit.freezed.dart';
 part 'categories_state.dart';
@@ -25,7 +26,9 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       final categories = await _source.getCategories();
       emit(CategoriesState.main(_mapper.fromData(categories)));
     } catch (e) {
-      emit(CategoriesState.error(e.toString()));
+      final message = e.toString();
+      logger.e(message);
+      emit(CategoriesState.error(message));
     }
   }
 }

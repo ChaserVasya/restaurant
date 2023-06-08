@@ -8,7 +8,7 @@ part 'category.g.dart';
 @freezed
 class Categories with _$Categories {
   const factory Categories({
-    @JsonKey(name: 'сategoriess s') required List<Category> categories,
+    @JsonKey(name: 'сategories') required List<Category> categories,
   }) = _Categories;
 
   factory Categories.fromJson(Map<String, dynamic> json) =>

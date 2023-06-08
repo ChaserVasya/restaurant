@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/uikit/icons_ui.dart';
 
 class AppScaffold extends StatelessWidget {
-  final AppBar? appBar;
+  final PreferredSizeWidget? appBar;
   final Widget? body;
 
   const AppScaffold({

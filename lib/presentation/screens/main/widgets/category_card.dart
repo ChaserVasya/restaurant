@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/application/data/models/category/category.dart';
+import 'package:restaurant/data/models/category/category.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -14,7 +14,11 @@ class CategoryCard extends StatelessWidget {
     return Stack(
       children: [
         Image.network(category.imageUrl),
-        Text(category.name),
+        Positioned(
+          top: 12,
+          left: 16,
+          child: Text(category.name),
+        ),
       ],
     );
   }

@@ -4,18 +4,18 @@ import 'package:injectable/injectable.dart';
 
 @singleton
 class PositionService {
-  Future<String?> getUserCity() async {
+  Future<String> getUserCity() async {
     final position = await _determinePosition();
 
     final placeMarks = await placemarkFromCoordinates(
       position.latitude,
       position.longitude,
     );
-    if (placeMarks.isEmpty) {
+    if (placeMarks.isEmpty || placeMarks.first.locality == null) {
       throw "Can't find city";
     }
 
-    return placeMarks.first.locality;
+    return placeMarks.first.locality!;
   }
 
   Future<Position> _determinePosition() async {

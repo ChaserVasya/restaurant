@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:restaurant/application/data/models/dish/dish.dart';
+import 'package:restaurant/data/models/dish/dish.dart';
 
 @singleton
 class DishesMapper {

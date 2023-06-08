@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:restaurant/application/data/models/category/category.dart';
+import 'package:restaurant/data/models/category/category.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'categories_data_source.g.dart';
