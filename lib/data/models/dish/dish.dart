@@ -22,8 +22,8 @@ class Dish with _$Dish {
     required int weight,
     required int price,
     required String description,
-    @JsonKey(name: 'image_url') required String imageUrl,
-    @JsonKey(name: 'tegs') required List<String> tags,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'tegs') required Set<String> tags,
   }) = _Dish;
 
   factory Dish.fromJson(Map<String, dynamic> json) => _$DishFromJson(json);

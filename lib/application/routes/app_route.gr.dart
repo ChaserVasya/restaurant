@@ -20,7 +20,17 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: const MainScreen(),
       );
-    }
+    },
+    CategoryRoute.name: (routeData) {
+      final args = routeData.argsAs<CategoryRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CategoryScreen(
+          args.category,
+          key: args.key,
+        ),
+      );
+    },
   };
 }
 
@@ -36,4 +46,42 @@ class MainRoute extends PageRouteInfo<void> {
   static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CategoryScreen]
+class CategoryRoute extends PageRouteInfo<CategoryRouteArgs> {
+  CategoryRoute({
+    required Category category,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoryRoute.name,
+          args: CategoryRouteArgs(
+            category: category,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoryRoute';
+
+  static const PageInfo<CategoryRouteArgs> page =
+      PageInfo<CategoryRouteArgs>(name);
+}
+
+class CategoryRouteArgs {
+  const CategoryRouteArgs({
+    required this.category,
+    this.key,
+  });
+
+  final Category category;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CategoryRouteArgs{category: $category, key: $key}';
+  }
 }

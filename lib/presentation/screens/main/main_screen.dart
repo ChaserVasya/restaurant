@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/application/di/di.dart';
+import 'package:restaurant/application/routes/app_route.dart';
+import 'package:restaurant/data/models/category/category.dart';
 import 'package:restaurant/presentation/blocs/categories_cubit/categories_cubit.dart';
 import 'package:restaurant/presentation/screens/main/widgets/category_card.dart';
 import 'package:restaurant/presentation/screens/main/widgets/user_info_app_bar.dart';
@@ -21,12 +23,12 @@ class MainScreen extends StatelessWidget {
         appBar: const UserInfoAppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: ConstsUI.screenBodyPaddings,
+            horizontal: ConstsUI.contentPaddings,
           ),
           child: BlocBuilder<CategoriesCubit, CategoriesState>(
             builder: (context, state) => state.when(
               initial: _handleInitial,
-              main: _handleMain,
+              main: (categories) => _handleMain(categories, context),
               error: _handleError,
             ),
           ),
@@ -41,9 +43,15 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _handleMain(categories) {
+  Widget _handleMain(List<Category> categories, BuildContext context) {
     final separatedWidgets = <Widget>[
-      for (final category in categories) CategoryCard(category),
+      for (final category in categories)
+        CategoryCard(
+          category,
+          onTap: () => AutoRouter.of(context).push(
+            CategoryRoute(category: category),
+          ),
+        ),
     ].separateAndWrapBy(const SizedBox(height: 8));
 
     return ListView.builder(
@@ -52,7 +60,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _handleError(e) {
+  Widget _handleError(String e) {
     return Center(
       child: Column(
         children: [

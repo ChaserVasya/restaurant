@@ -22,8 +22,8 @@ _$_Dish _$$_DishFromJson(Map<String, dynamic> json) => _$_Dish(
       weight: json['weight'] as int,
       price: json['price'] as int,
       description: json['description'] as String,
-      imageUrl: json['image_url'] as String,
-      tags: (json['tegs'] as List<dynamic>).map((e) => e as String).toList(),
+      imageUrl: json['image_url'] as String?,
+      tags: (json['tegs'] as List<dynamic>).map((e) => e as String).toSet(),
     );
 
 Map<String, dynamic> _$$_DishToJson(_$_Dish instance) => <String, dynamic>{
@@ -33,5 +33,5 @@ Map<String, dynamic> _$$_DishToJson(_$_Dish instance) => <String, dynamic>{
       'price': instance.price,
       'description': instance.description,
       'image_url': instance.imageUrl,
-      'tegs': instance.tags,
+      'tegs': instance.tags.toList(),
     };

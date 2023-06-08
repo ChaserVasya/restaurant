@@ -19,21 +19,25 @@ mixin _$DishesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Dish> dishes) main,
+    required TResult Function(
+            List<Dish> dishes, String currentTag, Set<String> tags)
+        main,
     required TResult Function(String e) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Dish> dishes)? main,
+    TResult? Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult? Function(String e)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Dish> dishes)? main,
+    TResult Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult Function(String e)? error,
     required TResult orElse(),
   }) =>
@@ -118,7 +122,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Dish> dishes) main,
+    required TResult Function(
+            List<Dish> dishes, String currentTag, Set<String> tags)
+        main,
     required TResult Function(String e) error,
   }) {
     return initial();
@@ -128,7 +134,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Dish> dishes)? main,
+    TResult? Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult? Function(String e)? error,
   }) {
     return initial?.call();
@@ -138,7 +145,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Dish> dishes)? main,
+    TResult Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult Function(String e)? error,
     required TResult orElse(),
   }) {
@@ -192,7 +200,7 @@ abstract class _$$_MainCopyWith<$Res> {
   factory _$$_MainCopyWith(_$_Main value, $Res Function(_$_Main) then) =
       __$$_MainCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Dish> dishes});
+  $Res call({List<Dish> dishes, String currentTag, Set<String> tags});
 }
 
 /// @nodoc
@@ -206,12 +214,22 @@ class __$$_MainCopyWithImpl<$Res>
   @override
   $Res call({
     Object? dishes = null,
+    Object? currentTag = null,
+    Object? tags = null,
   }) {
     return _then(_$_Main(
-      null == dishes
+      dishes: null == dishes
           ? _value._dishes
           : dishes // ignore: cast_nullable_to_non_nullable
               as List<Dish>,
+      currentTag: null == currentTag
+          ? _value.currentTag
+          : currentTag // ignore: cast_nullable_to_non_nullable
+              as String,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
@@ -219,7 +237,12 @@ class __$$_MainCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Main implements _Main {
-  const _$_Main(final List<Dish> dishes) : _dishes = dishes;
+  const _$_Main(
+      {required final List<Dish> dishes,
+      required this.currentTag,
+      required final Set<String> tags})
+      : _dishes = dishes,
+        _tags = tags;
 
   final List<Dish> _dishes;
   @override
@@ -230,8 +253,18 @@ class _$_Main implements _Main {
   }
 
   @override
+  final String currentTag;
+  final Set<String> _tags;
+  @override
+  Set<String> get tags {
+    if (_tags is EqualUnmodifiableSetView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_tags);
+  }
+
+  @override
   String toString() {
-    return 'DishesState.main(dishes: $dishes)';
+    return 'DishesState.main(dishes: $dishes, currentTag: $currentTag, tags: $tags)';
   }
 
   @override
@@ -239,12 +272,18 @@ class _$_Main implements _Main {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Main &&
-            const DeepCollectionEquality().equals(other._dishes, _dishes));
+            const DeepCollectionEquality().equals(other._dishes, _dishes) &&
+            (identical(other.currentTag, currentTag) ||
+                other.currentTag == currentTag) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_dishes));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_dishes),
+      currentTag,
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -256,32 +295,36 @@ class _$_Main implements _Main {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Dish> dishes) main,
+    required TResult Function(
+            List<Dish> dishes, String currentTag, Set<String> tags)
+        main,
     required TResult Function(String e) error,
   }) {
-    return main(dishes);
+    return main(dishes, currentTag, tags);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Dish> dishes)? main,
+    TResult? Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult? Function(String e)? error,
   }) {
-    return main?.call(dishes);
+    return main?.call(dishes, currentTag, tags);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Dish> dishes)? main,
+    TResult Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult Function(String e)? error,
     required TResult orElse(),
   }) {
     if (main != null) {
-      return main(dishes);
+      return main(dishes, currentTag, tags);
     }
     return orElse();
   }
@@ -322,9 +365,14 @@ class _$_Main implements _Main {
 }
 
 abstract class _Main implements DishesState {
-  const factory _Main(final List<Dish> dishes) = _$_Main;
+  const factory _Main(
+      {required final List<Dish> dishes,
+      required final String currentTag,
+      required final Set<String> tags}) = _$_Main;
 
   List<Dish> get dishes;
+  String get currentTag;
+  Set<String> get tags;
   @JsonKey(ignore: true)
   _$$_MainCopyWith<_$_Main> get copyWith => throw _privateConstructorUsedError;
 }
@@ -392,7 +440,9 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Dish> dishes) main,
+    required TResult Function(
+            List<Dish> dishes, String currentTag, Set<String> tags)
+        main,
     required TResult Function(String e) error,
   }) {
     return error(e);
@@ -402,7 +452,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Dish> dishes)? main,
+    TResult? Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult? Function(String e)? error,
   }) {
     return error?.call(e);
@@ -412,7 +463,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Dish> dishes)? main,
+    TResult Function(List<Dish> dishes, String currentTag, Set<String> tags)?
+        main,
     TResult Function(String e)? error,
     required TResult orElse(),
   }) {

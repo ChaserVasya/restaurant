@@ -162,9 +162,9 @@ mixin _$Dish {
   int get price => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_url')
-  String get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'tegs')
-  List<String> get tags => throw _privateConstructorUsedError;
+  Set<String> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -182,8 +182,8 @@ abstract class $DishCopyWith<$Res> {
       int weight,
       int price,
       String description,
-      @JsonKey(name: 'image_url') String imageUrl,
-      @JsonKey(name: 'tegs') List<String> tags});
+      @JsonKey(name: 'image_url') String? imageUrl,
+      @JsonKey(name: 'tegs') Set<String> tags});
 }
 
 /// @nodoc
@@ -204,7 +204,7 @@ class _$DishCopyWithImpl<$Res, $Val extends Dish>
     Object? weight = null,
     Object? price = null,
     Object? description = null,
-    Object? imageUrl = null,
+    Object? imageUrl = freezed,
     Object? tags = null,
   }) {
     return _then(_value.copyWith(
@@ -228,14 +228,14 @@ class _$DishCopyWithImpl<$Res, $Val extends Dish>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Set<String>,
     ) as $Val);
   }
 }
@@ -252,8 +252,8 @@ abstract class _$$_DishCopyWith<$Res> implements $DishCopyWith<$Res> {
       int weight,
       int price,
       String description,
-      @JsonKey(name: 'image_url') String imageUrl,
-      @JsonKey(name: 'tegs') List<String> tags});
+      @JsonKey(name: 'image_url') String? imageUrl,
+      @JsonKey(name: 'tegs') Set<String> tags});
 }
 
 /// @nodoc
@@ -270,7 +270,7 @@ class __$$_DishCopyWithImpl<$Res> extends _$DishCopyWithImpl<$Res, _$_Dish>
     Object? weight = null,
     Object? price = null,
     Object? description = null,
-    Object? imageUrl = null,
+    Object? imageUrl = freezed,
     Object? tags = null,
   }) {
     return _then(_$_Dish(
@@ -294,14 +294,14 @@ class __$$_DishCopyWithImpl<$Res> extends _$DishCopyWithImpl<$Res, _$_Dish>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Set<String>,
     ));
   }
 }
@@ -315,8 +315,8 @@ class _$_Dish implements _Dish {
       required this.weight,
       required this.price,
       required this.description,
-      @JsonKey(name: 'image_url') required this.imageUrl,
-      @JsonKey(name: 'tegs') required final List<String> tags})
+      @JsonKey(name: 'image_url') this.imageUrl,
+      @JsonKey(name: 'tegs') required final Set<String> tags})
       : _tags = tags;
 
   factory _$_Dish.fromJson(Map<String, dynamic> json) => _$$_DishFromJson(json);
@@ -333,14 +333,14 @@ class _$_Dish implements _Dish {
   final String description;
   @override
   @JsonKey(name: 'image_url')
-  final String imageUrl;
-  final List<String> _tags;
+  final String? imageUrl;
+  final Set<String> _tags;
   @override
   @JsonKey(name: 'tegs')
-  List<String> get tags {
-    if (_tags is EqualUnmodifiableListView) return _tags;
+  Set<String> get tags {
+    if (_tags is EqualUnmodifiableSetView) return _tags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
+    return EqualUnmodifiableSetView(_tags);
   }
 
   @override
@@ -390,8 +390,8 @@ abstract class _Dish implements Dish {
       required final int weight,
       required final int price,
       required final String description,
-      @JsonKey(name: 'image_url') required final String imageUrl,
-      @JsonKey(name: 'tegs') required final List<String> tags}) = _$_Dish;
+      @JsonKey(name: 'image_url') final String? imageUrl,
+      @JsonKey(name: 'tegs') required final Set<String> tags}) = _$_Dish;
 
   factory _Dish.fromJson(Map<String, dynamic> json) = _$_Dish.fromJson;
 
@@ -407,10 +407,10 @@ abstract class _Dish implements Dish {
   String get description;
   @override
   @JsonKey(name: 'image_url')
-  String get imageUrl;
+  String? get imageUrl;
   @override
   @JsonKey(name: 'tegs')
-  List<String> get tags;
+  Set<String> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_DishCopyWith<_$_Dish> get copyWith => throw _privateConstructorUsedError;

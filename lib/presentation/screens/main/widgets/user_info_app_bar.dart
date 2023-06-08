@@ -15,7 +15,7 @@ class UserInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: const Icon(Icons.location_on_outlined),
       title: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) => state.when(
-          initial: () => const Text('Вычисляем местонахождение...'),
+          initial: () => const CircularProgressIndicator.adaptive(),
           main: (city) {
             return Column(
               children: [
